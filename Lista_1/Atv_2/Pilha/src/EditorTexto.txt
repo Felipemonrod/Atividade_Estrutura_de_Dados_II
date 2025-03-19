@@ -1,0 +1,103 @@
+// import java.util.Stack;
+
+// public class EditorTexto {
+//     private String texto;  // Texto atual
+//     private Stack<Operacao> historicoUndo;  // Pilha de operações desfeitas
+//     private Stack<Operacao> historicoRedo;  // Pilha de operações refeitas
+
+//     // Construtor
+//     public EditorTexto() {
+//         this.texto = "";
+//         this.historicoUndo = new Stack<>();
+//         this.historicoRedo = new Stack<>();
+//     }
+
+//     // Classe interna que representa uma operação
+//     private class Operacao {
+//         String tipo;
+//         String dado;
+
+//         public Operacao(String tipo, String dado) {
+//             this.tipo = tipo;
+//             this.dado = dado;
+//         }
+//     }
+
+//     // Adicionar texto ao editor e registrar a operação no histórico de undo
+//     public void adicionarTexto(String textoAdicional) {
+//         historicoUndo.push(new Operacao("adicionar", textoAdicional));
+//         texto += textoAdicional;
+//         historicoRedo.clear();  // Limpa o histórico de redo
+//     }
+
+//     // Remover texto do final e registrar a operação no histórico de undo
+//     public void removerTexto(int quantidade) {
+//         String textoRemovido = texto.substring(texto.length() - quantidade);
+//         historicoUndo.push(new Operacao("remover", textoRemovido));
+//         texto = texto.substring(0, texto.length() - quantidade);
+//         historicoRedo.clear();  // Limpa o histórico de redo
+//     }
+
+//     // Desfazer a última operação
+//     public void desfazer() {
+//         if (!historicoUndo.isEmpty()) {
+//             Operacao ultimaOperacao = historicoUndo.pop();
+//             if (ultimaOperacao.tipo.equals("adicionar")) {
+//                 texto = texto.substring(0, texto.length() - ultimaOperacao.dado.length());
+//                 historicoRedo.push(new Operacao("adicionar", ultimaOperacao.dado));
+//             } else if (ultimaOperacao.tipo.equals("remover")) {
+//                 texto += ultimaOperacao.dado;
+//                 historicoRedo.push(new Operacao("remover", ultimaOperacao.dado));
+//             }
+//         } else {
+//             System.out.println("Nada para desfazer.");
+//         }
+//     }
+
+//     // Refazer a última operação desfeita
+//     public void refazer() {
+//         if (!historicoRedo.isEmpty()) {
+//             Operacao ultimaOperacao = historicoRedo.pop();
+//             if (ultimaOperacao.tipo.equals("adicionar")) {
+//                 texto += ultimaOperacao.dado;
+//                 historicoUndo.push(new Operacao("adicionar", ultimaOperacao.dado));
+//             } else if (ultimaOperacao.tipo.equals("remover")) {
+//                 texto = texto.substring(0, texto.length() - ultimaOperacao.dado.length());
+//                 historicoUndo.push(new Operacao("remover", ultimaOperacao.dado));
+//             }
+//         } else {
+//             System.out.println("Nada para refazer.");
+//         }
+//     }
+
+//     // Mostrar o texto atual
+//     public void mostrarTexto() {
+//         System.out.println("Texto Atual: " + texto);
+//     }
+
+//     // Exemplo de uso do programa
+//     public static void main(String[] args) {
+//         EditorTexto editor = new EditorTexto();
+
+//         // Adicionando texto
+//         editor.adicionarTexto("Olá, ");
+//         editor.adicionarTexto("como vai você? ");
+//         editor.mostrarTexto();
+
+//         // Desfazendo
+//         editor.desfazer();
+//         editor.mostrarTexto();
+
+//         // Refazendo
+//         editor.refazer();
+//         editor.mostrarTexto();
+
+//         // Removendo texto
+//         editor.removerTexto(6);
+//         editor.mostrarTexto();
+
+//         // Desfazendo a remoção
+//         editor.desfazer();
+//         editor.mostrarTexto();
+//     }
+// }
